@@ -1,0 +1,5 @@
+#!/bin/sh
+
+ERL_HOSTNAME=`elixir -e ':inet.gethostname |> elem(1) |> IO.puts'`
+
+iex --sname pry --remsh "scoreboard@$ERL_HOSTNAME"
