@@ -2,7 +2,7 @@ defmodule AnimatedEnigma.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "room:*", AnimatedEnigma.RoomChannel
+  channel "game:*", AnimatedEnigma.GameChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
