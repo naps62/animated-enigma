@@ -10,6 +10,7 @@
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
     "react": "^15.4.2",
+    "react-brunch": "^1.0.9",
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
