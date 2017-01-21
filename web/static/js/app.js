@@ -3,35 +3,42 @@ import "phoenix_html"
 import _ from "lodash";
 import React from "react";
 import ReactDOM from "react-dom";
+import ResponsiveVoice from "responsivevoice";
 
 import Game from "./components/game";
 
 class App {
   constructor () {
-    console.log("Initializing application");
+    this.voiceReady = false;
+
     this.checkLoadingStateInterval = window.setInterval(this.checkLoadingState, 100);
+
+    ResponsiveVoice.AddEventListener("OnReady", this.handleVoiceReady);
   }
 
   checkLoadingState = () => {
-    console.log("Checking load state");
     if (this.isReady()) {
       clearInterval(this.checkLoadingStateInterval);
+
+      this.init();
       this.run();
     }
   }
 
-  isReady() {
-    return this.isVoiceReady();
+  handleVoiceReady = () => {
+    this.voiceReady = true;
   }
 
-  isVoiceReady() {
-    const browserVoices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+  isReady() {
+    return this.voiceReady;
+  }
 
-    return !_.isEmpty(browserVoices) || !_.isEmpty(ResponsiveVoice.systemvoices);
+  init () {
+    ResponsiveVoice.setDefaultVoice("Spanish Female");
+    ResponsiveVoice.speak("Bem-vindo ao 'Má Onda'!");
   }
 
   run () {
-    console.log("Running");
     const container = document.getElementById('game-container');
 
     if (container) {
