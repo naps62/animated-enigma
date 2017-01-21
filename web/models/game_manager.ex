@@ -3,8 +3,6 @@ defmodule AnimatedEnigma.GameManager do
 
   alias AnimatedEnigma.{QuestionProvider, Game, Player}
 
-  @max_players 2
-
   def start_link(initial_state) do
     GenServer.start_link(__MODULE__, initial_state, name: __MODULE__)
   end
