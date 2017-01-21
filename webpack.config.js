@@ -34,6 +34,10 @@ module.exports = {
     extensions: ['', '.js', '.jsx'],
   },
 
+  externals: {
+    "responsivevoice": "responsiveVoice",
+  },
+
   plugins: [
     new ExtractTextPlugin("css/app.css"),
     new CopyWebpackPlugin([{ from: "./web/static/assets" }]),
