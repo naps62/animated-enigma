@@ -41,4 +41,5 @@ config :animated_enigma, AnimatedEnigma.Repo,
   password: "postgres",
   database: "animated_enigma_dev",
   hostname: "localhost",
-  pool_size: 10
+  pool_size: 10,
+  loggers: []

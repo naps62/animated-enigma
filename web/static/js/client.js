@@ -1,38 +1,40 @@
-import { Socket } from "phoenix"
+import { Socket } from "phoenix";
 
 class Client {
   constructor() {
     this.socket = new Socket("/socket", { params: { token: window.userToken } })
     this.socket.connect();
+    this.state = null;
+    this.stateListener = null;
+  }
 
-    this.channel = this.socket.channel("room:join");
+  onState(listener) {
+    this.stateListener = listener;
+  }
+
+  join(gameId, playerId) {
+    this.channel = this.socket.channel(`game:${gameId}`, {player_id: playerId});
+
+    this.channel.join()
+      .receive("ok", state => this._onJoin(state))
+      .receive("error", this._onJoinError);
+  }
+
+  _onJoin(initialState) {
+    this._setState(initialState);
+    console.info("Joined successfully", this.state)
+  }
+
+  _onJoinError(error) {
+    console.error(error);
+  }
+
+  _setState(state) {
+    this.state = state;
+    if (this.stateListener) {
+      this.stateListener(this.state);
+    }
   }
 }
-
-// let state = {};
-
-// // Now that you are connected, you can join channels with a topic:
-// let channel = socket.channel("room:lobby", {})
-// channel.join()
-//   .receive("ok", initialState => {
-//     state = initialState;
-//     console.log("Joined successfully", initialState)
-//   })
-
-//   .receive("error", resp => {
-//     console.log("Unable to join", resp)
-//   })
-
-
-// let button = document.querySelector("button");
-// button.addEventListener("click", event => {
-//   channel.push("inc", { value: state.value })
-// });
-
-// channel.on("new_value", resp => {
-//   state = resp;
-//   console.log(resp);
-//   document.querySelector("#counter").innerHTML = state.value;
-// });
 
 export default Client;
