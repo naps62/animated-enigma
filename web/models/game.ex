@@ -35,5 +35,14 @@ defmodule AnimatedEnigma.Game do
       game |
       question: Question.add_fake_answer(question, player, answer)
     }
+    |> with_updated_status
+  end
+
+  defp with_updated_status(game) do
+    if Question.ready?(game.question) do
+      %__MODULE__{game | state: :asking_question }
+    else
+      game
+    end
   end
 end

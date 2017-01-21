@@ -6,9 +6,13 @@ defmodule AnimatedEnigma.Question do
   end
 
   def add_fake_answer(question = %__MODULE__{fake_answers: fake_answers}, player, answer) do
-    %__MODULE__{
+    updated_question = %__MODULE__{
       question |
       fake_answers: Map.put(fake_answers, player, answer)
     }
+  end
+
+  def ready?(question) do
+    Enum.count(question.fake_answers) == 3
   end
 end

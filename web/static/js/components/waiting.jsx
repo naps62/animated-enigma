@@ -1,8 +1,8 @@
 import React from "react";
 
-class ChairmanWaiting extends React.Component {
+class Waiting extends React.Component {
   render() {
-    return <div className="ChairmanWaiting">
+    return <div className="Waiting">
       <div className="u-padDownLarge" />
 
       <h1 className="Text title">
@@ -15,4 +15,4 @@ class ChairmanWaiting extends React.Component {
   }
 }
 
-export default ChairmanWaiting;
+export default Waiting;

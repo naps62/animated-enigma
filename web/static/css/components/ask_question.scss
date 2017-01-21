@@ -1,0 +1,24 @@
+.AskQuestion {
+  background-color: var(--my-color);
+  height: 100vh;
+}
+
+.AskQuestion-form {
+  padding: $space-base;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.AskQuestion-question {
+  font-size: 36px;
+  color: $color-white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.AskQuestion-answer {
+  font-size: 36px;
+  color: $color-white;
+}

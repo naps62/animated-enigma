@@ -19,8 +19,12 @@ class AnswerGatherer extends React.Component {
     this.setState({ submitted: true })
   }
 
+  isSubmitted() {
+    return this.props.question.fake_answers[this.props.client.playerId];
+  }
+
   renderInput() {
-    if (this.state.submitted) {
+    if (this.isSubmitted()) {
       return;
     }
 
@@ -34,7 +38,7 @@ class AnswerGatherer extends React.Component {
   }
 
   renderSubmit() {
-    if (this.state.submitted) {
+    if (this.isSubmitted()) {
       return <div className="Text">OK. Now hold one</div>;
     } else {
       return <button className="Button Button--other">Submit</button>;
