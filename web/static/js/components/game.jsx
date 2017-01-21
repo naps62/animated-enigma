@@ -14,7 +14,7 @@ class Game extends React.Component {
     this.client.join(this.props.id, this.props.playerId);
   }
 
-  renderPlayer(player) {
+  renderPlayer = (player) => {
     return <li key={player.public_id}>{player.public_id}</li>;
   }
 
