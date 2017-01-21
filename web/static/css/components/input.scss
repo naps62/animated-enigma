@@ -1,0 +1,15 @@
+.Input {
+
+  border-radius: 3px;
+  border: solid 1px $color-grey;
+  font-size: 20px;
+  padding: $space-small;
+
+  outline: none;
+
+  @include transition(border-color);
+
+  &:hover {
+    border-color: $color-mako;
+  }
+}

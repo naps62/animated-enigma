@@ -1,0 +1,28 @@
+$layout-max-width: 960px;
+
+$breakpoints: (
+  phone: 320px,
+  tablet: 768px,
+  desktop: 1024px
+);
+
+$color-white: #fff;
+$color-black: #000;
+$color-dusty-orange: #f59536;
+$color-electric-blue: #024ff7;
+$color-darkish-pink: #e83471;
+$color-weird-green: #2ddc6d;
+
+$color-orange: $color-dusty-orange;
+$color-blue: $color-electric-blue;
+$color-pink: $color-darkish-pink;
+$color-green: $color-weird-green;
+
+// $gradients: (
+//   red: ($color-lightRed, $color-red),
+// );
+
+// $font-size-panel-title: 20px;
+
+$space-base: 25px;
+$space-large: 50px;

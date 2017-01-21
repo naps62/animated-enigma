@@ -1,0 +1,45 @@
+.Lobby-players {
+  display: flex;
+  flex-wrap: wrap;
+
+  position: relative;
+}
+
+.Lobby-player {
+  flex-basis: 50%;
+  flex-shrink: 0;
+  height: 50vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Lobby-playerName {
+  color: $color-white;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.Lobby-player:nth-child(1) {
+  background-color: $color-blue;
+}
+.Lobby-player:nth-child(2) {
+  background-color: $color-orange;
+}
+.Lobby-player:nth-child(3) {
+  background-color: $color-pink;
+}
+.Lobby-player:nth-child(4) {
+  background-color: $color-green;
+}
+
+.Lobby-startBtn {
+  width: 80%;
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}

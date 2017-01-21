@@ -1,0 +1,18 @@
+$spaces: (
+  Base: $space-base,
+  Large: $space-large,
+);
+
+@each $name, $value in $spaces {
+  .u-pushDown#{$name} {
+    margin-bottom: $value;
+  }
+
+  .u-pushRight#{$name} {
+    margin-right: $value;
+  }
+
+  .u-padDown#{$name} {
+    padding-bottom: $value;
+  }
+}

@@ -1,0 +1,16 @@
+$Text-colors: (
+  'white': $color-white,
+  'green': $color-green,
+  'red': $color-red,
+  'blue': $color-blue,
+);
+
+.Text.strong {
+  font-weight: bold;
+}
+
+@each $name, $value in $Text-colors {
+  .Text.#{$name} {
+    color: $value;
+  }
+}

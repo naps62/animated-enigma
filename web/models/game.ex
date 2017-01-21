@@ -3,7 +3,7 @@ defmodule AnimatedEnigma.Game do
 
   alias AnimatedEnigma.QuestionProvider
 
-  @max_players 2
+  @max_players 4
 
   def start_link(initial_state) do
     GenServer.start_link(__MODULE__, initial_state, name: __MODULE__)
@@ -36,7 +36,7 @@ defmodule AnimatedEnigma.Game do
 
       game ->
         updated_game = %{
-          game | players: Enum.uniq([player | game.players])
+          game | players: Enum.uniq(game.players ++ [player])
         }
 
         Map.put(state, game_id, updated_game)
@@ -63,7 +63,7 @@ defmodule AnimatedEnigma.Game do
 
     updated_game = %{
       state[game_id] |
-      state: :running,
+      state: :gather_answers,
       current_question: question,
     }
     updated_state = Map.put(state, game_id, updated_game)

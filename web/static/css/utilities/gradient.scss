@@ -1,0 +1,6 @@
+@function gradient($name) {
+  $from: nth(map-get($gradients, $name), 1);
+  $to: nth(map-get($gradients, $name), 2);
+
+  @return -webkit-linear-gradient(top, $from, $to);
+}

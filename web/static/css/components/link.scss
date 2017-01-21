@@ -1,0 +1,8 @@
+.Link {
+  color: $color-mako;
+  border-radius: 6px;
+
+  &:hover {
+    color: $color-red;
+  }
+}

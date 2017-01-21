@@ -3,7 +3,11 @@ import _ from "lodash";
 
 class Lobby extends React.Component {
   renderPlayer = (player) => {
-    return <li key={player}>{player}</li>;
+    return <li className="Lobby-player" key={player}>
+      <div className="Lobby-playerName">
+        {player}
+      </div>
+    </li>;
   }
 
   renderPlayerList() {
@@ -11,26 +15,24 @@ class Lobby extends React.Component {
       return;
     }
 
-    return <ul>
+    return <ul className="Lobby-players">
       {_.map(this.props.players, this.renderPlayer)}
     </ul>;
   }
 
   renderStartButton() {
-    if (this.props.players.length != 2) {
+    if (this.props.players.length != 4) {
       return;
     }
 
-    return <button onClick={this.props.onStart}>Start!</button>
+    return <div className="Lobby-startBtn">
+      <button className="Button" onClick={this.props.onStart}>Start!</button>
+    </div>
   }
 
   render() {
     return (
-      <div>
-        gameId: {this.props.game_id}
-        <br />
-        you: {this.props.game_id}
-        <br />
+      <div className="Lobby">
         {this.renderPlayerList()}
         {this.renderStartButton()}
       </div>

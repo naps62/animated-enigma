@@ -1,0 +1,18 @@
+.Layout {
+  background-color: $color-mako;
+  background-image: url("/images/layout/bg.png");
+  background-repeat: repeat-y;
+  background-position: center top;
+}
+
+.Layout-content {
+  background-image: url("/images/layout/content-bg.jpg");
+  background-repeat: no-repeat;
+  background-color: $color-white;
+  background-position: top center;
+
+  max-width: 100%;
+  width: $layout-max-width;
+  min-height: 100%;
+  margin: auto;
+}

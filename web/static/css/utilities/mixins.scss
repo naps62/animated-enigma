@@ -1,0 +1,3 @@
+@mixin transition($rules) {
+  transition: $rules 0.3s;
+}

@@ -1,0 +1,54 @@
+$Panel-colors: (
+  red: $color-red,
+  green: $color-green,
+  blue: $color-blue,
+  transparentWhite: rgba($color-white, 0.8),
+);
+
+$Panel-pads: (
+  small: $space-small,
+  base: $space-base,
+);
+
+.Panel {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.Panel.fullWidth {
+  width: 100%;
+}
+
+.Panel.redGradient {
+  background-image: gradient(red);
+}
+
+.Panel-redHeader {
+  background-color: $color-red;
+}
+
+.Panel-header {
+  padding: $space-small $space-base;
+  color: $color-white;
+  font-size: $font-size-panel-title;
+}
+
+@each $name, $value in $Panel-colors {
+  .Panel.#{$name} {
+    background-color: $value;
+  }
+
+  .Panel.#{$name}Border {
+    border: solid 1px $value;
+
+    .Panel-header {
+      background-color: $value;
+    }
+  }
+}
+
+@each $name, $value in $Panel-pads {
+  .Panel.#{$name}Pad .Panel-content {
+    padding: $value;
+  }
+}

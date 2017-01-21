@@ -1,0 +1,272 @@
+// Generated with http://johnotander.com/rework-flex-grid/
+// Number of columns: 12
+
+.Grid {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.Grid-row {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.Grid-col-1 {
+  max-width: 8.3333333333%;
+  flex-basis: 8.3333333333%;
+}
+
+.Grid-col-2 {
+  max-width: 16.6666666667%;
+  flex-basis: 16.6666666667%;
+}
+
+.Grid-col-3 {
+  max-width: 25%;
+  flex-basis: 25%;
+}
+
+.Grid-col-4 {
+  max-width: 33.3333333333%;
+  flex-basis: 33.3333333333%;
+}
+
+.Grid-col-5 {
+  max-width: 41.6666666667%;
+  flex-basis: 41.6666666667%;
+}
+
+.Grid-col-6 {
+  max-width: 50%;
+  flex-basis: 50%;
+}
+
+.Grid-col-7 {
+  max-width: 58.3333333333%;
+  flex-basis: 58.3333333333%;
+}
+
+.Grid-col-8 {
+  max-width: 66.6666666667%;
+  flex-basis: 66.6666666667%;
+}
+
+.Grid-col-9 {
+  max-width: 75%;
+  flex-basis: 75%;
+}
+
+.Grid-col-10 {
+  max-width: 83.3333333333%;
+  flex-basis: 83.3333333333%;
+}
+
+.Grid-col-11 {
+  max-width: 91.6666666667%;
+  flex-basis: 91.6666666667%;
+}
+
+.Grid-col {
+  max-width: 100%;
+  flex-basis: 100%;
+}
+
+.Grid-col-1,.Grid-col-1--sm,.Grid-col-1--md,.Grid-col-1--lg,.Grid-col-2,.Grid-col-2--sm,.Grid-col-2--md,.Grid-col-2--lg,.Grid-col-3,.Grid-col-3--sm,.Grid-col-3--md,.Grid-col-3--lg,.Grid-col-4,.Grid-col-4--sm,.Grid-col-4--md,.Grid-col-4--lg,.Grid-col-5,.Grid-col-5--sm,.Grid-col-5--md,.Grid-col-5--lg,.Grid-col-6,.Grid-col-6--sm,.Grid-col-6--md,.Grid-col-6--lg,.Grid-col-7,.Grid-col-7--sm,.Grid-col-7--md,.Grid-col-7--lg,.Grid-col-8,.Grid-col-8--sm,.Grid-col-8--md,.Grid-col-8--lg,.Grid-col-9,.Grid-col-9--sm,.Grid-col-9--md,.Grid-col-9--lg,.Grid-col-10,.Grid-col-10--sm,.Grid-col-10--md,.Grid-col-10--lg,.Grid-col-11,.Grid-col-11--sm,.Grid-col-11--md,.Grid-col-11--lg,.Grid-col,.Grid-col--sm,.Grid-col--md,.Grid-col--lg {
+  flex: 1;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.Grid-col-1--sm,.Grid-col-1--md,.Grid-col-1--lg,.Grid-col-2--sm,.Grid-col-2--md,.Grid-col-2--lg,.Grid-col-3--sm,.Grid-col-3--md,.Grid-col-3--lg,.Grid-col-4--sm,.Grid-col-4--md,.Grid-col-4--lg,.Grid-col-5--sm,.Grid-col-5--md,.Grid-col-5--lg,.Grid-col-6--sm,.Grid-col-6--md,.Grid-col-6--lg,.Grid-col-7--sm,.Grid-col-7--md,.Grid-col-7--lg,.Grid-col-8--sm,.Grid-col-8--md,.Grid-col-8--lg,.Grid-col-9--sm,.Grid-col-9--md,.Grid-col-9--lg,.Grid-col-10--sm,.Grid-col-10--md,.Grid-col-10--lg,.Grid-col-11--sm,.Grid-col-11--md,.Grid-col-11--lg,.Grid-col--sm,.Grid-col--md,.Grid-col--lg {
+  max-width: 100%;
+  flex-basis: 100%;
+}
+
+@include mobile {
+  .Grid-col-1--sm {
+    max-width: 8.3333333333%;
+    flex-basis: 8.3333333333%;
+  }
+
+  .Grid-col-2--sm {
+    max-width: 16.6666666667%;
+    flex-basis: 16.6666666667%;
+  }
+
+  .Grid-col-3--sm {
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+
+  .Grid-col-4--sm {
+    max-width: 33.3333333333%;
+    flex-basis: 33.3333333333%;
+  }
+
+  .Grid-col-5--sm {
+    max-width: 41.6666666667%;
+    flex-basis: 41.6666666667%;
+  }
+
+  .Grid-col-6--sm {
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+
+  .Grid-col-7--sm {
+    max-width: 58.3333333333%;
+    flex-basis: 58.3333333333%;
+  }
+
+  .Grid-col-8--sm {
+    max-width: 66.6666666667%;
+    flex-basis: 66.6666666667%;
+  }
+
+  .Grid-col-9--sm {
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+
+  .Grid-col-10--sm {
+    max-width: 83.3333333333%;
+    flex-basis: 83.3333333333%;
+  }
+
+  .Grid-col-11--sm {
+    max-width: 91.6666666667%;
+    flex-basis: 91.6666666667%;
+  }
+
+  .Grid-col--sm {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+@include desktop {
+  .Grid-col-1--md {
+    max-width: 8.3333333333%;
+    flex-basis: 8.3333333333%;
+  }
+
+  .Grid-col-2--md {
+    max-width: 16.6666666667%;
+    flex-basis: 16.6666666667%;
+  }
+
+  .Grid-col-3--md {
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+
+  .Grid-col-4--md {
+    max-width: 33.3333333333%;
+    flex-basis: 33.3333333333%;
+  }
+
+  .Grid-col-5--md {
+    max-width: 41.6666666667%;
+    flex-basis: 41.6666666667%;
+  }
+
+  .Grid-col-6--md {
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+
+  .Grid-col-7--md {
+    max-width: 58.3333333333%;
+    flex-basis: 58.3333333333%;
+  }
+
+  .Grid-col-8--md {
+    max-width: 66.6666666667%;
+    flex-basis: 66.6666666667%;
+  }
+
+  .Grid-col-9--md {
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+
+  .Grid-col-10--md {
+    max-width: 83.3333333333%;
+    flex-basis: 83.3333333333%;
+  }
+
+  .Grid-col-11--md {
+    max-width: 91.6666666667%;
+    flex-basis: 91.6666666667%;
+  }
+
+  .Grid-col--md {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  .Grid-col-1--lg {
+    max-width: 8.3333333333%;
+    flex-basis: 8.3333333333%;
+  }
+
+  .Grid-col-2--lg {
+    max-width: 16.6666666667%;
+    flex-basis: 16.6666666667%;
+  }
+
+  .Grid-col-3--lg {
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+
+  .Grid-col-4--lg {
+    max-width: 33.3333333333%;
+    flex-basis: 33.3333333333%;
+  }
+
+  .Grid-col-5--lg {
+    max-width: 41.6666666667%;
+    flex-basis: 41.6666666667%;
+  }
+
+  .Grid-col-6--lg {
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+
+  .Grid-col-7--lg {
+    max-width: 58.3333333333%;
+    flex-basis: 58.3333333333%;
+  }
+
+  .Grid-col-8--lg {
+    max-width: 66.6666666667%;
+    flex-basis: 66.6666666667%;
+  }
+
+  .Grid-col-9--lg {
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+
+  .Grid-col-10--lg {
+    max-width: 83.3333333333%;
+    flex-basis: 83.3333333333%;
+  }
+
+  .Grid-col-11--lg {
+    max-width: 91.6666666667%;
+    flex-basis: 91.6666666667%;
+  }
+
+  .Grid-col--lg {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}

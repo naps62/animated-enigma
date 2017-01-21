@@ -1,0 +1,23 @@
+@mixin mobile {
+  @include media(">=tablet") {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @include media(">=desktop") {
+    @content;
+  }
+}
+
+@mixin mobileOnly {
+  @include desktop {
+    @content;
+  }
+}
+
+@mixin desktopOnly {
+  @include desktop {
+    @content;
+  }
+}

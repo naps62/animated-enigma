@@ -1,7 +1,7 @@
 import React from "react";
 import Client from "../client";
 import Lobby from "./lobby";
-import Question from "./question";
+import AnswerGatherer from "./answers_gatherer";
 import _ from "lodash";
 
 class Game extends React.Component {
@@ -20,7 +20,7 @@ class Game extends React.Component {
 
   decoratedState = (state) => {
     state.chairman = (state.chairman == this.props.playerId);
-    console.log(state, this.props.playerId)
+    state.index = _.indexOf(state.players, this.props.playerId);
 
     return state;
   }
@@ -29,12 +29,28 @@ class Game extends React.Component {
     this.client.start();
   }
 
-  render() {
+  renderAnswerGatherer() {
+    if (this.state.chairman()) {
+      return <div>Wait!</div>;
+    } else {
+      return <AnswerGatherer {...this.state} />;
+    }
+  }
+
+  renderCurrentRoom() {
     switch(this.state.state) {
       case "lobby": return <Lobby {...this.state} onStart={this.onLobbyStart} />;
-      case "running": return <Question {...this.state} onStart={this.onLobbyStart} />;
+      case "gather_answers": renderAnswerGatherer();
       default: return <div>error. state is {this.state.state}.</div>;
     }
+  }
+
+  render() {
+    const classes = `Game player${this.state.index}`;
+
+    return <div className={classes}>
+      {this.renderCurrentRoom()}
+    </div>
   }
 }
 
