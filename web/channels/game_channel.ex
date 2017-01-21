@@ -29,6 +29,7 @@ defmodule AnimatedEnigma.GameChannel do
   def handle_in("fake_answer", %{"game_id" => game_id, "player_id" => player_id, "answer" => answer }, socket) do
     case GameManager.add_fake_answer(game_id, player_id, answer) do
       {:ok, game} ->
+        IO.inspect game
         send self, {:update_game_state, game}
 
       _ -> nil

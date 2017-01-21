@@ -2,9 +2,11 @@ require IEx
 defmodule AnimatedEnigma.QuestionProvider do
   use GenServer
 
+  alias AnimatedEnigma.Question
+
   @questions [
-    "Qual é o sentido da vida?",
-    "Quais?"
+    Question.new("Qual é o sentido da vida?", "42"),
+    Question.new("Quais?", "caralho")
   ]
 
   def start_link(_) do

@@ -15,6 +15,30 @@ class AnswerGatherer extends React.Component {
     e.preventDefault();
 
     this.props.client.addFakeAnswer(this.state.answer);
+
+    this.setState({ submitted: true })
+  }
+
+  renderInput() {
+    if (this.state.submitted) {
+      return;
+    }
+
+    return <input
+      type="text"
+      value={this.state.answer}
+      onChange={this.handleChange}
+      className="Input"
+      placeholder="Type your answer"
+    />;
+  }
+
+  renderSubmit() {
+    if (this.state.submitted) {
+      return <div className="Text">OK. Now hold one</div>;
+    } else {
+      return <button className="Button Button--other">Submit</button>;
+    }
   }
 
   render() {
@@ -22,19 +46,12 @@ class AnswerGatherer extends React.Component {
       <form onSubmit={this.handleSubmit} className="AnswerGatherer-form">
         <div className="u-pushDownLarge" />
 
-        <h1 className="Text title upper">{this.props.current_question}</h1>
+        <h1 className="Text title upper">{this.props.question.question}</h1>
         <div className="u-pushDownLarge" />
 
-        <input
-          type="text"
-          value={this.state.answer}
-          onChange={this.handleChange}
-          className="Input"
-          placeholder="Type your answer"
-        />
+        {this.renderInput()}
         <div className="u-pushDownLarge" />
-
-        <button className="Button Button--other">Submit</button>
+        {this.renderSubmit()}
       </form>
     </div>
   }

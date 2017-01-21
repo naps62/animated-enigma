@@ -19,8 +19,8 @@ defmodule AnimatedEnigma.GameManager do
     GenServer.call(__MODULE__, {:start, game_id})
   end
 
-  def add_fake_answer(game_id, player_id, answer) do
-    GenServer.call(__MODULE__, {:add_fake_answer, game_id, player_id, answer})
+  def add_fake_answer(game_id, player, answer) do
+    GenServer.call(__MODULE__, {:add_fake_answer, game_id, player, answer})
   end
 
   # server
@@ -47,7 +47,10 @@ defmodule AnimatedEnigma.GameManager do
   end
 
 
-  def handle_call({:add_fake_answer, game_id, player_id, answer}, _from, state) do
+  def handle_call({:add_fake_answer, game_id, player, answer}, _from, state) do
+    updated_game = Game.add_fake_answer(state[game_id], player, answer)
+    updated_state = Map.put(state, game_id, updated_game)
 
+    {:reply, {:ok, updated_game}, updated_state}
   end
 end
