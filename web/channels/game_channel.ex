@@ -8,6 +8,7 @@ defmodule AnimatedEnigma.GameChannel do
     case GameManager.user_joined(game_id, player_id) do
       {:ok, game} ->
         send self, {:update_game_state, game}
+        send self, {:player_joined, player_id}
         {:ok, socket}
 
       {:error, reason} ->
@@ -40,6 +41,11 @@ defmodule AnimatedEnigma.GameChannel do
 
   def handle_info({:update_game_state, game}, socket) do
     broadcast! socket, "game_update", game
+    {:noreply, socket}
+  end
+
+  def handle_info({:player_joined, player_id}, socket) do
+    broadcast! socket, "player_joined", %{ player_id: player_id }
     {:noreply, socket}
   end
 end

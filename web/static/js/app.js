@@ -35,7 +35,6 @@ class App {
 
   init () {
     ResponsiveVoice.setDefaultVoice("Spanish Female");
-    ResponsiveVoice.speak("Bem-vindo ao 'Má Onda'!");
   }
 
   run () {

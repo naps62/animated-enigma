@@ -1,4 +1,7 @@
 import { Socket } from "phoenix";
+import ResponsiveVoice from "responsivevoice";
+
+import Presenter from "./presenter";
 
 class Client {
   constructor() {
@@ -32,6 +35,14 @@ class Client {
     this.channel.push("fake_answer", { game_id: this.gameId, player_id: this.playerId, answer: answer });
   }
 
+  _onPlayerJoined = ({ player_id: playerId }) => {
+    if (this.playerId === playerId) {
+      Presenter.welcome(playerId);
+    } else {
+      Presenter.userJoined(playerId);
+    }
+  }
+
   _onJoin(initialState) {
     this._setState(initialState);
   }
@@ -49,6 +60,7 @@ class Client {
 
   _setupEvents() {
     this.channel.on("game_update", this._setState);
+    this.channel.on("player_joined", this._onPlayerJoined);
   }
 }
 
