@@ -13,10 +13,16 @@ class Game extends React.Component {
 
   componentWillMount() {
     this.client.onState(state => {
-      console.log("here", state)
-      this.setState(state)
+      this.setState(this.decoratedState(state))
     });
     this.client.join(this.props.id, this.props.playerId);
+  }
+
+  decoratedState = (state) => {
+    state.chairman = (state.chairman == this.props.playerId);
+    console.log(state, this.props.playerId)
+
+    return state;
   }
 
   onLobbyStart = () => {
@@ -24,7 +30,6 @@ class Game extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     switch(this.state.state) {
       case "lobby": return <Lobby {...this.state} onStart={this.onLobbyStart} />;
       case "running": return <Question {...this.state} onStart={this.onLobbyStart} />;

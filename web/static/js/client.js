@@ -30,7 +30,6 @@ class Client {
 
   _onJoin(initialState) {
     this._setState(initialState);
-    console.info("Joined successfully", this.state)
   }
 
   _onJoinError(error) {
@@ -38,7 +37,6 @@ class Client {
   }
 
   _setState = (state) => {
-    console.info(state);
     this.state = state;
     if (this.stateListener) {
       this.stateListener(this.state);

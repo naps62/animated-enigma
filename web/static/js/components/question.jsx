@@ -6,12 +6,20 @@ class Question extends React.Component {
     return <li key={player}>{player}</li>;
   }
 
+  renderChairman() {
+    return <div>Wait!</div>;
+  }
+
+  renderOther() {
+    return <div>Do stuff!</div>;
+  }
+
   render() {
-    return (
-      <div>
-        Question
-      </div>
-    );
+    if (this.props.chairman) {
+      return this.renderChairman();
+    } else {
+      return this.renderOther();
+    }
   }
 }
 

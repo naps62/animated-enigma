@@ -1,6 +1,8 @@
 defmodule AnimatedEnigma.Game do
   use GenServer
 
+  alias AnimatedEnigma.QuestionProvider
+
   @max_players 2
 
   def start_link(initial_state) do
@@ -58,11 +60,19 @@ defmodule AnimatedEnigma.Game do
     updated_game = %{state[game_id] | state: :running}
     updated_state = Map.put(state, game_id, updated_game)
 
+    QuestionProvider.start_game(game_id)
+
     {:reply, {:ok, updated_game}, updated_state}
   end
 
 
   defp init_game(game_id, first_player) do
-    %{game_id: game_id, state: :lobby, players: [first_player]}
+    %{
+      game_id: game_id,
+      state: :lobby,
+      players: [first_player],
+      chairman: first_player,
+      current_question: nil
+    }
   end
 end
