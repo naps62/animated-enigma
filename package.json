@@ -2,7 +2,8 @@
   "repository": {},
   "license": "MIT",
   "scripts": {
-    "watch": "webpack --watch-stdin --progress --color"
+    "watch": "webpack --watch-stdin --progress --color",
+    "prod:build": "webpack -p"
   },
   "dependencies": {
     "babel-core": "^6.18.2",

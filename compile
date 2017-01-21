@@ -1,0 +1,2 @@
+yarn run prod:build
+mix phoenix.digest
