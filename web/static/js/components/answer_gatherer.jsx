@@ -1,12 +1,12 @@
 import React from "react";
 import _ from "lodash";
 
-class AnswersGatherer extends React.Component {
+class AnswerGatherer extends React.Component {
   render() {
-    return <div className="AnswersGatherer">
+    return <div className="AnswerGatherer">
       <div>{this.props.current_question}</div>;
     </div>
   }
 }
 
-export default AnswersGatherer;
+export default AnswerGatherer;

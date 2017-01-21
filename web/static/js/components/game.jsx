@@ -1,7 +1,7 @@
 import React from "react";
 import Client from "../client";
 import Lobby from "./lobby";
-import AnswerGatherer from "./answers_gatherer";
+import AnswerGatherer from "./answer_gatherer";
 import _ from "lodash";
 
 class Game extends React.Component {
