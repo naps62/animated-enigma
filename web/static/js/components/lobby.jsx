@@ -3,9 +3,9 @@ import _ from "lodash";
 
 class Lobby extends React.Component {
   renderPlayer = (player) => {
-    return <li className="Lobby-player" key={player}>
+    return <li className="Lobby-player" key={player.name}>
       <div className="Lobby-playerName">
-        {player}
+        {player.name}
       </div>
     </li>;
   }
@@ -21,7 +21,7 @@ class Lobby extends React.Component {
   }
 
   renderStartButton() {
-    if (this.props.players.length != 2) {
+    if (_.size(this.props.players) != 4) {
       return;
     }
 

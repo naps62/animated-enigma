@@ -1,7 +1,7 @@
 defmodule AnimatedEnigma.GameManager do
   use GenServer
 
-  alias AnimatedEnigma.{QuestionProvider, Game}
+  alias AnimatedEnigma.{QuestionProvider, Game, Player}
 
   @max_players 2
 
@@ -11,24 +11,29 @@ defmodule AnimatedEnigma.GameManager do
 
   # client
 
-  def user_joined(game_id, player) do
-    GenServer.call(__MODULE__, {:user_joined, game_id, player})
+  def user_joined(game_id, player_id) do
+    GenServer.call(__MODULE__, {:user_joined, game_id, player_id})
   end
 
   def start(game_id) do
     GenServer.call(__MODULE__, {:start, game_id})
   end
 
-  def add_fake_answer(game_id, player, answer) do
-    GenServer.call(__MODULE__, {:add_fake_answer, game_id, player, answer})
+  def add_fake_answer(game_id, player_id, answer) do
+    GenServer.call(__MODULE__, {:add_fake_answer, game_id, player_id, answer})
+  end
+
+  def answer_question(game_id, player_id, answer) do
+    GenServer.call(__MODULE__, {:answer_question, game_id, player_id, answer})
   end
 
   # server
 
   # user join
-  def handle_call({:user_joined, game_id, player}, _from, state) do
+  def handle_call({:user_joined, game_id, player_id}, _from, state) do
     game = Map.get(state, game_id, Game.new(game_id))
-    updated_game = Game.add_player(game, player)
+    new_player = Player.new(player_id)
+    updated_game = Game.add_player(game, new_player)
 
     new_state = Map.put(state, game_id, updated_game)
 
@@ -47,8 +52,15 @@ defmodule AnimatedEnigma.GameManager do
   end
 
 
-  def handle_call({:add_fake_answer, game_id, player, answer}, _from, state) do
-    updated_game = Game.add_fake_answer(state[game_id], player, answer)
+  def handle_call({:add_fake_answer, game_id, player_id, answer}, _from, state) do
+    updated_game = Game.add_fake_answer(state[game_id], player_id, answer)
+    updated_state = Map.put(state, game_id, updated_game)
+
+    {:reply, {:ok, updated_game}, updated_state}
+  end
+
+  def handle_call({:answer_question, game_id, player_id, answer}, _from, state) do
+    updated_game = Game.answer_question(state[game_id], player_id, answer)
     updated_state = Map.put(state, game_id, updated_game)
 
     {:reply, {:ok, updated_game}, updated_state}

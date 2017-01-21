@@ -1,35 +1,36 @@
 import React from "react";
 import _ from "lodash";
 
-class AskQuestion extends React.Component {
+class QuestionResult extends React.Component {
   get answers() {
     return this.props.question.all_answers;
   }
 
-  handleChoice = (event) => {
-    this.props.client.answerQuestion(event.target.innerHTML);
-    event.preventDefault();
+  classesForButton = (answer) => {
+    const playerID = _.findKey(this.props.question.fake_answers, a => a == answer)
+    const playerIndex = _.findIndex(this.props.players, { id: playerID });
+
+    return `Button player${playerIndex} u-pushDownBase`
   }
 
   renderAnswer = (answer, index) => {
     return <button
       key={index}
-      className="Button u-pushDownBase"
-      onClick={this.handleChoice}
+      className={this.classesForButton(answer)}
     >
       {answer}
     </button>
   }
 
   renderAnswers() {
-    return <div className="AskQuestion-answers">
+    return <div className="QuestionResult-answers">
       {_.map(this.answers, this.renderAnswer)}
     </div>
   }
 
   render() {
-    return <div className="AskQuestion">
-      <div className="AskQuestion-content">
+    return <div className="QuestionResult">
+      <div className="QuestionResult-content">
         <div className="u-padDownLarge" />
 
         <h1 className="Text title upper">{this.props.question.question}</h1>
@@ -41,4 +42,4 @@ class AskQuestion extends React.Component {
   }
 }
 
-export default AskQuestion;
+export default QuestionResult;

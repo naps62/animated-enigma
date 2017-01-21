@@ -17,3 +17,26 @@
 .Button--other {
   box-shadow: 7px 7px 0 var(--chairman-color);
 }
+
+.Button.player0,
+.Button.player1,
+.Button.player2,
+.Button.player3 {
+  color: $color-white;
+}
+
+.Button.player0 {
+  background-color: $color-blue;
+}
+
+.Button.player1 {
+  background-color: $color-orange;
+}
+
+.Button.player2 {
+  background-color: $color-pink;
+}
+
+.Button.player3 {
+  background-color: $color-green;
+}

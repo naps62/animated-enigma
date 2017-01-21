@@ -1,8 +1,6 @@
 defmodule AnimatedEnigma.GameController do
   use AnimatedEnigma.Web, :controller
 
-  alias AnimatedEnigma.{Game, Player}
-
   def show(conn, %{"game" => %{"public_id" => game_id, "username" => player_id}}) do
     case true do
       {:error, _} -> render(conn, "error.html")

@@ -35,6 +35,10 @@ class Client {
     this.channel.push("fake_answer", { game_id: this.gameId, player_id: this.playerId, answer: answer });
   }
 
+  answerQuestion(answer) {
+    this.channel.push("answer_question", { game_id: this.gameId, player_id: this.playerId, answer: answer });
+  }
+
   _onPlayerJoined = ({ player_id: playerId }) => {
     if (this.playerId === playerId) {
       Presenter.welcome(playerId);

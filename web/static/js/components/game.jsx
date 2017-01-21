@@ -7,6 +7,7 @@ import Lobby from "./lobby";
 import AnswerGatherer from "./answer_gatherer";
 import AskQuestion from "./ask_question";
 import Waiting from "./waiting";
+import QuestionResult from "./question_result";
 
 class Game extends React.Component {
   constructor(props) {
@@ -27,8 +28,8 @@ class Game extends React.Component {
   }
 
   decoratedState = (state) => {
-    state.chairman = (state.chairman == this.props.playerId);
-    state.index = _.indexOf(state.players, this.props.playerId);
+    state.isChairman = (state.chairman && state.chairman.id == this.props.playerId);
+    state.index = _.findIndex(state.players, { id: this.props.playerId });
 
     return state;
   }
@@ -38,7 +39,7 @@ class Game extends React.Component {
   }
 
   renderAnswerGatherer() {
-    if (this.state.chairman) {
+    if (this.state.isChairman) {
       return <Waiting {...this.state} />;
     } else {
       return <AnswerGatherer {...this.state} client={this.client} />;
@@ -46,11 +47,15 @@ class Game extends React.Component {
   }
 
   renderAskQuestion() {
-    if (this.state.chairman) {
+    if (this.state.isChairman) {
       return <AskQuestion {...this.state} client={this.client} />;
     } else {
       return <Waiting {...this.state} />;
     }
+  }
+
+  renderQuestionResult() {
+    return <QuestionResult {...this.state} client={this.client} />;
   }
 
   renderCurrentRoom() {
@@ -58,6 +63,7 @@ class Game extends React.Component {
       case "lobby": return <Lobby {...this.state} onStart={this.onLobbyStart} />;
       case "gather_answers": return this.renderAnswerGatherer();
       case "asking_question": return this.renderAskQuestion();
+      case "question_result": return this.renderQuestionResult();
       default: return <div>error. state is {this.state.state}.</div>;
     }
   }
