@@ -1,9 +1,8 @@
 import React from "react";
 
-class Waiting extends React.Component {
 import Presenter from "../presenter";
 
-class ChairmanWaiting extends React.Component {
+class Waiting extends React.Component {
   componentDidMount() {
     Presenter.speak("Ay madre! Os mios amigos chamaram-me homossexual!");
     Presenter.speak("Bate lles!");
