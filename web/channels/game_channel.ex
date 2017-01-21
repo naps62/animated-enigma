@@ -1,13 +1,13 @@
 defmodule AnimatedEnigma.GameChannel do
   use Phoenix.Channel
 
-  alias AnimatedEnigma.Game
+  alias AnimatedEnigma.GameManager
   import Ecto.Query
 
   def join("game:" <> game_id, %{"player_id" => player_id} = _payload, socket) do
-    case Game.user_joined(game_id, player_id) do
+    case GameManager.user_joined(game_id, player_id) do
       {:ok, game} ->
-        send self, {:after_join, game}
+        send self, {:update_game_state, game}
         {:ok, socket}
 
       {:error, reason} ->
@@ -16,38 +16,29 @@ defmodule AnimatedEnigma.GameChannel do
   end
 
   def handle_in("start", %{"game_id" => game_id}, socket) do
-    case Game.start(game_id) do
+    case GameManager.start(game_id) do
       {:ok, game} ->
-        send self, {:after_start, game}
-        {:noreply, socket}
+        send self, {:update_game_state, game}
 
-      _ ->
-        {:noreply, socket}
+      _ -> nil
     end
-  end
 
-  def handle_info({:after_join, game}, socket) do
-    update_game_state(socket, game)
     {:noreply, socket}
   end
 
-  def handle_info({:after_start, game}, socket) do
-    update_game_state(socket, game)
+  def handle_in("fake_answer", %{"game_id" => game_id, "player_id" => player_id, "answer" => answer }, socket) do
+    case GameManager.add_fake_answer(game_id, player_id, answer) do
+      {:ok, game} ->
+        send self, {:update_game_state, game}
+
+      _ -> nil
+    end
+
     {:noreply, socket}
   end
 
-  defp update_game_state(socket, game) do
+  def handle_info({:update_game_state, game}, socket) do
     broadcast! socket, "game_update", game
+    {:noreply, socket}
   end
-
-  # def handle_out("next_question", ...)
-  # def handle_in("other_answer", ...)
-  # def handle_out("question_ready", ...)
-  # def handle_in("player_answer", ...)
-  # def handle_out("question_result", ...)
-
-  # def handle_in("inc", %{"value" => value}, socket) do
-  #   broadcast! socket, "new_value", %{value: value + 1}
-  #   {:noreply, socket}
-  # end
 end

@@ -28,6 +28,10 @@ class Client {
     this.channel.push("start", { game_id: this.gameId });
   }
 
+  addFakeAnswer(answer) {
+    this.channel.push("fake_answer", { game_id: this.gameId, player_id: this.playeId, answer: answer });
+  }
+
   _onJoin(initialState) {
     this._setState(initialState);
   }

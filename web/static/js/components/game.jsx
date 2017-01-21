@@ -33,7 +33,7 @@ class Game extends React.Component {
     if (this.state.chairman) {
       return <div>Wait!</div>;
     } else {
-      return <AnswerGatherer {...this.state} />;
+      return <AnswerGatherer {...this.state} client={this.client} />;
     }
   }
 
