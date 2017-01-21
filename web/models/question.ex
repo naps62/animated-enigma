@@ -13,6 +13,6 @@ defmodule AnimatedEnigma.Question do
   end
 
   def ready?(question) do
-    Enum.count(question.fake_answers) == 3
+    Enum.count(question.fake_answers) == 1
   end
 end

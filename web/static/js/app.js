@@ -5,6 +5,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import ResponsiveVoice from "responsivevoice";
 
+import Presenter from "./presenter";
 import Game from "./components/game";
 
 class App {
@@ -34,7 +35,7 @@ class App {
   }
 
   init () {
-    ResponsiveVoice.setDefaultVoice("Spanish Female");
+    Presenter.init({ silentMode: true });
   }
 
   run () {

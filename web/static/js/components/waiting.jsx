@@ -14,9 +14,9 @@ class Waiting extends React.Component {
       <div className="u-padDownLarge" />
 
       <h1 className="Text title">
-        <div>- Ò māe, ò māe! Os meus amigos chamaram-me homossexual!</div>
+        <div>- Ó māe, ó māe! Os meus amigos chamaram-me homossexual!</div>
         <div>- Bate-lhes</div>
-        <div>- mas eles sao tao fofos.</div>
+        <div>- Mas eles sao tao fofos.</div>
       </h1>
       <div className="u-pushDownLarge" />
     </div>

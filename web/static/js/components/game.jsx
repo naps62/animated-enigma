@@ -1,10 +1,12 @@
 import React from "react";
+import _ from "lodash";
+
 import Client from "../client";
+import Presenter from "../presenter";
 import Lobby from "./lobby";
 import AnswerGatherer from "./answer_gatherer";
 import AskQuestion from "./ask_question";
 import Waiting from "./waiting";
-import _ from "lodash";
 
 class Game extends React.Component {
   constructor(props) {
@@ -18,6 +20,10 @@ class Game extends React.Component {
       this.setState(this.decoratedState(state))
     });
     this.client.join(this.props.id, this.props.playerId);
+  }
+
+  componentDidMount() {
+    Presenter.intro();
   }
 
   decoratedState = (state) => {
