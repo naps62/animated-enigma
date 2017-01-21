@@ -13,7 +13,7 @@ defmodule AnimatedEnigma do
       # Start the endpoint when the application starts
       supervisor(AnimatedEnigma.Endpoint, []),
       # Start your own worker by calling: AnimatedEnigma.Worker.start_link(arg1, arg2, arg3)
-      # worker(AnimatedEnigma.Worker, [arg1, arg2, arg3]),
+      worker(AnimatedEnigma.Game, [%{}]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

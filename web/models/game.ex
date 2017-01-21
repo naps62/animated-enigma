@@ -1,34 +1,42 @@
 defmodule AnimatedEnigma.Game do
-  use AnimatedEnigma.Web, :model
+  use GenServer
 
-  @derive {Poison.Encoder, only: [:public_id]}
-
-  alias AnimatedEnigma.Repo
-  import Ecto.Query
-
-  schema "games" do
-    field :public_id, :string
-
-    has_many :players, AnimatedEnigma.Player
-
-    timestamps()
+  def start_link(initial_state) do
+    GenServer.start_link(__MODULE__, initial_state, name: __MODULE__)
   end
 
-  @doc """
-  Builds a changeset based on the `struct` and `params`.
-  """
-  def changeset(struct, params \\ %{}) do
-    struct
-    |> cast(params, [:public_id])
-    |> validate_required([:public_id])
+  # client
+
+  def user_joined(game, player) do
+    GenServer.call(__MODULE__, {:user_joined, game, player})
   end
 
-  def find_or_create(params) do
-    query = from g in __MODULE__, where: g.public_id == ^params.public_id
+  # server
 
-    case Repo.one(query) do
-      nil -> changeset(%__MODULE__{}, params) |> Repo.insert!
-      game -> game
+  def handle_call({:user_joined, game, player}, _from, state) do
+    IO.inspect state
+    new_state = case Map.get(state, game) do
+      nil -> Map.put(state, game, %{players: [player]})
+      game_state ->
+        updated_game = Map.put(game_state, :players, Enum.uniq([player | game_state.players]))
+        Map.put(state, game, updated_game)
     end
+
+    IO.inspect new_state
+    {:reply, new_state, new_state}
+  end
+
+  def handle_call({:users_in_game, game}, _from, state) do
+    {:reply, Map.get(state, game), state}
+  end
+
+  def handle_call({:user_left, game, user_id}, _from, state) do
+    new_users = state
+                |> Map.get(game)
+                |> Enum.reject(&(&1.id == user_id))
+
+    new_state = Map.update!(state, game, fn(_) -> new_users end)
+
+    {:reply, new_state, new_state}
   end
 end

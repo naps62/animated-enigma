@@ -1,25 +1,16 @@
 defmodule AnimatedEnigma.GameChannel do
   use Phoenix.Channel
 
-  alias AnimatedEnigma.{Game, Player, Repo}
+  alias AnimatedEnigma.Game
   import Ecto.Query
 
   def join("game:" <> game_id, %{"player_id" => player_id} = _message, socket) do
-    state = state_for(game_id, player_id)
+    users = Game.user_joined(game_id, player_id)[game_id]
 
-    {:ok, state, socket}
-  end
+    # TODO babel-plugin-transform-class-properties
+    send self, {:after_join, users}
 
-  defp state_for(game_id, player_id) do
-    game = Game |> where(public_id: ^game_id) |> Repo.one
-    players = Player |> where(game_id: ^game.id) |> Repo.all
-    me = Player |> where(game_id: ^game.id, public_id: ^player_id) |> Repo.one
-
-    %{
-      game: game,
-      me: me,
-      players: players
-    }
+    {:ok, socket}
   end
 
   # def handle_out("next_question", ...)

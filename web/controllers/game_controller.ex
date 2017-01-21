@@ -4,17 +4,13 @@ defmodule AnimatedEnigma.GameController do
   alias AnimatedEnigma.{Game, Player}
 
   def show(conn, %{"id" => id, "player_id" => player_id}) do
-    game = %{public_id: id} |> Game.find_or_create()
-    player = %{game_id: game.id, public_id: player_id} |> Player.find_or_create()
-
-    IO.inspect player
-    case player do
+    case true do
       {:error, _} -> render(conn, "error.html")
 
-      _ -> 
+      _ ->
         conn
-        |> assign(:game, game)
-        |> assign(:player, player)
+        |> assign(:game_id, id)
+        |> assign(:player_id, player_id)
         |> render("show.html")
     end
 
