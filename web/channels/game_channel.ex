@@ -4,13 +4,41 @@ defmodule AnimatedEnigma.GameChannel do
   alias AnimatedEnigma.Game
   import Ecto.Query
 
-  def join("game:" <> game_id, %{"player_id" => player_id} = _message, socket) do
-    users = Game.user_joined(game_id, player_id)[game_id]
+  def join("game:" <> game_id, %{"player_id" => player_id} = _payload, socket) do
+    case Game.user_joined(game_id, player_id) do
+      {:ok, game} ->
+        send self, {:after_join, game}
+        {:ok, socket}
 
-    # TODO babel-plugin-transform-class-properties
-    send self, {:after_join, users}
+      {:error, reason} ->
+        {:error, %{reason: reason}}
+    end
+  end
 
-    {:ok, socket}
+  def handle_in("start", %{"game_id" => game_id}, socket) do
+    case Game.start(game_id) do
+      {:ok, game} ->
+        send self, {:after_start, game}
+        {:noreply, socket}
+
+      _ ->
+        {:noreply, socket}
+    end
+  end
+
+  def handle_info({:after_join, game}, socket) do
+    update_game_state(socket, game)
+    {:noreply, socket}
+  end
+
+  def handle_info({:after_start, game}, socket) do
+    update_game_state(socket, game)
+    {:noreply, socket}
+  end
+
+  defp update_game_state(socket, game) do
+    IO.inspect game
+    broadcast! socket, "game_update", game
   end
 
   # def handle_out("next_question", ...)

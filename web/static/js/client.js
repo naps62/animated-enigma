@@ -13,11 +13,19 @@ class Client {
   }
 
   join(gameId, playerId) {
+    this.gameId = gameId;
+    this.playerId = playerId;
     this.channel = this.socket.channel(`game:${gameId}`, {player_id: playerId});
 
     this.channel.join()
       .receive("ok", state => this._onJoin(state))
       .receive("error", this._onJoinError);
+
+    this._setupEvents();
+  }
+
+  start() {
+    this.channel.push("start", { game_id: this.gameId });
   }
 
   _onJoin(initialState) {
@@ -29,11 +37,16 @@ class Client {
     console.error(error);
   }
 
-  _setState(state) {
+  _setState = (state) => {
+    console.info(state);
     this.state = state;
     if (this.stateListener) {
       this.stateListener(this.state);
     }
+  }
+
+  _setupEvents() {
+    this.channel.on("game_update", this._setState);
   }
 }
 

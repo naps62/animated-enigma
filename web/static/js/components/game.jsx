@@ -1,5 +1,7 @@
 import React from "react";
 import Client from "../client";
+import Lobby from "./lobby";
+import Question from "./question";
 import _ from "lodash";
 
 class Game extends React.Component {
@@ -10,33 +12,24 @@ class Game extends React.Component {
   }
 
   componentWillMount() {
-    this.client.onState(state => this.setState(state));
+    this.client.onState(state => {
+      console.log("here", state)
+      this.setState(state)
+    });
     this.client.join(this.props.id, this.props.playerId);
   }
 
-  renderPlayer = (player) => {
-    return <li key={player.public_id}>{player.public_id}</li>;
-  }
-
-  renderPlayerList() {
-    if (!this.state.players) {
-      return;
-    }
-
-    return <ul>
-      {_.map(this.state.players, this.renderPlayer)}
-    </ul>;
+  onLobbyStart = () => {
+    this.client.start();
   }
 
   render() {
-    return (
-      <div>
-        {this.renderPlayerList()}
-        gameId: {this.props.id}
-        <br />
-        playerId: {this.props.playerId}
-      </div>
-    );
+    console.log(this.state)
+    switch(this.state.state) {
+      case "lobby": return <Lobby {...this.state} onStart={this.onLobbyStart} />;
+      case "running": return <Question {...this.state} onStart={this.onLobbyStart} />;
+      default: return <div>error. state is {this.state.state}.</div>;
+    }
   }
 }
 

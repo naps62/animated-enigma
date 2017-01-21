@@ -1,42 +1,68 @@
 defmodule AnimatedEnigma.Game do
   use GenServer
 
+  @max_players 2
+
   def start_link(initial_state) do
     GenServer.start_link(__MODULE__, initial_state, name: __MODULE__)
   end
 
   # client
 
-  def user_joined(game, player) do
-    GenServer.call(__MODULE__, {:user_joined, game, player})
+  def user_joined(game_id, player) do
+    GenServer.call(__MODULE__, {:user_joined, game_id, player})
+  end
+
+  def start(game_id) do
+    GenServer.call(__MODULE__, {:start, game_id})
   end
 
   # server
 
-  def handle_call({:user_joined, game, player}, _from, state) do
-    IO.inspect state
-    new_state = case Map.get(state, game) do
-      nil -> Map.put(state, game, %{players: [player]})
-      game_state ->
-        updated_game = Map.put(game_state, :players, Enum.uniq([player | game_state.players]))
-        Map.put(state, game, updated_game)
+  # user join, but already 4 users are in
+  def handle_call({:user_joined, %{players: players}, _player}, _from, state)
+  when length(players) == @max_players do
+    {:reply, {:error, "game is full"}, state}
+  end
+
+  # user join
+  def handle_call({:user_joined, game_id, player}, _from, state) do
+    new_state = case Map.get(state, game_id) do
+      nil ->
+        new_game = init_game(game_id, player)
+        Map.put(state, game_id, new_game)
+
+      game ->
+        updated_game = %{
+          game | players: Enum.uniq([player | game.players])
+        }
+
+        Map.put(state, game_id, updated_game)
     end
 
-    IO.inspect new_state
-    {:reply, new_state, new_state}
+    {:reply, {:ok, new_state[game_id]}, new_state}
   end
 
-  def handle_call({:users_in_game, game}, _from, state) do
-    {:reply, Map.get(state, game), state}
-  end
-
-  def handle_call({:user_left, game, user_id}, _from, state) do
+  def handle_call({:user_left, game_id, user_id}, _from, state) do
     new_users = state
-                |> Map.get(game)
+                |> Map.get(game_id)
                 |> Enum.reject(&(&1.id == user_id))
 
-    new_state = Map.update!(state, game, fn(_) -> new_users end)
+    new_state = Map.update!(state, game_id, fn(_) -> new_users end)
 
     {:reply, new_state, new_state}
+  end
+
+
+  def handle_call({:start, game_id}, _from, state) do
+    updated_game = %{state[game_id] | state: :running}
+    updated_state = Map.put(state, game_id, updated_game)
+
+    {:reply, {:ok, updated_game}, updated_state}
+  end
+
+
+  defp init_game(game_id, first_player) do
+    %{game_id: game_id, state: :lobby, players: [first_player]}
   end
 end
