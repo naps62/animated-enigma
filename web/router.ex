@@ -17,7 +17,7 @@ defmodule AnimatedEnigma.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/game/:id/:player_id", GameController, :show
+    get "/game", GameController, :show
   end
 
   # Other scopes may use custom stacks.

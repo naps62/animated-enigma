@@ -1,1 +1,9 @@
-= link "Play!", to: game_path(@conn, :show, 1, "naps62")
+= form_tag game_path(@conn, :show), method: :get
+  div
+    = label :game, :public_id, "Game ID"
+    = text_input :game, :public_id
+  div
+    = label :game, :username, "Your username"
+    = text_input :game, :username
+
+  = submit "Enter"
