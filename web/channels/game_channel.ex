@@ -37,7 +37,6 @@ defmodule AnimatedEnigma.GameChannel do
   end
 
   defp update_game_state(socket, game) do
-    IO.inspect game
     broadcast! socket, "game_update", game
   end
 

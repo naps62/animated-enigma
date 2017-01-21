@@ -11,7 +11,7 @@ class Question extends React.Component {
   }
 
   renderOther() {
-    return <div>Do stuff!</div>;
+    return <div>{this.props.current_question}</div>;
   }
 
   render() {

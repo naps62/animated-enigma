@@ -12,17 +12,17 @@ defmodule AnimatedEnigma.QuestionProvider do
   end
 
   def start_game(game_id) do
-    GenServer.cast(__MODULE__, {:start_game, game_id})
+    GenServer.call(__MODULE__, {:start_game, game_id})
   end
 
   def request_question(game_id) do
     GenServer.call(__MODULE__, {:request_question, game_id})
   end
 
-  def handle_cast({:start_game, game_id}, state) do
+  def handle_call({:start_game, game_id}, _from, state) do
     new_state = Map.put(state, game_id, Enum.shuffle(@questions))
 
-    {:noreply, new_state}
+    {:reply, :ok, new_state}
   end
 
   def handle_call({:request_question, game_id}, _from, state) do

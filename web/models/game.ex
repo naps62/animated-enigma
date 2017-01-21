@@ -57,10 +57,16 @@ defmodule AnimatedEnigma.Game do
 
 
   def handle_call({:start, game_id}, _from, state) do
-    updated_game = %{state[game_id] | state: :running}
-    updated_state = Map.put(state, game_id, updated_game)
-
     QuestionProvider.start_game(game_id)
+
+    {:ok, question} = QuestionProvider.request_question(game_id)
+
+    updated_game = %{
+      state[game_id] |
+      state: :running,
+      current_question: question,
+    }
+    updated_state = Map.put(state, game_id, updated_game)
 
     {:reply, {:ok, updated_game}, updated_state}
   end
