@@ -1,15 +1,17 @@
 .Input {
-
   border-radius: 3px;
-  border: solid 1px $color-grey;
   font-size: 20px;
+
+  width: 100%;
+  color: $color-white;
+
+  border: none;
+  border-bottom: solid 2px $color-white;
+  outline: none;
+  background-color: transparent;
   padding: $space-small;
 
-  outline: none;
-
-  @include transition(border-color);
-
-  &:hover {
-    border-color: $color-mako;
+  @include placeholder {
+    color: $color-white;
   }
 }

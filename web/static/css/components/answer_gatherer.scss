@@ -3,7 +3,22 @@
   height: 100vh;
 }
 
+.AnswerGatherer-form {
+  padding: $space-base;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .AnswerGatherer-question {
+  font-size: 36px;
+  color: $color-white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.AnswerGatherer-answer {
   font-size: 36px;
   color: $color-white;
 }

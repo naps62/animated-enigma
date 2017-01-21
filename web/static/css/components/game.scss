@@ -1,6 +1,7 @@
 .Game {
   height: 100%;
-  --chairman-color: $color-orange;
+  background-color: var(--my-color);
+  --chairman-color: $color-blue;
 }
 
 .Game.player0 {

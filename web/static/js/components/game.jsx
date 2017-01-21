@@ -30,7 +30,7 @@ class Game extends React.Component {
   }
 
   renderAnswerGatherer() {
-    if (this.state.chairman()) {
+    if (this.state.chairman) {
       return <div>Wait!</div>;
     } else {
       return <AnswerGatherer {...this.state} />;
@@ -40,7 +40,7 @@ class Game extends React.Component {
   renderCurrentRoom() {
     switch(this.state.state) {
       case "lobby": return <Lobby {...this.state} onStart={this.onLobbyStart} />;
-      case "gather_answers": renderAnswerGatherer();
+      case "gather_answers": return this.renderAnswerGatherer();
       default: return <div>error. state is {this.state.state}.</div>;
     }
   }
