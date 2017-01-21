@@ -21,7 +21,7 @@ class Lobby extends React.Component {
   }
 
   renderStartButton() {
-    if (this.props.players.length != 4) {
+    if (this.props.players.length != 2) {
       return;
     }
 
