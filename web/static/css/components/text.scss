@@ -1,16 +1,19 @@
 $Text-colors: (
   'white': $color-white,
-  'green': $color-green,
-  'red': $color-red,
-  'blue': $color-blue,
 );
-
-.Text.strong {
-  font-weight: bold;
-}
 
 @each $name, $value in $Text-colors {
   .Text.#{$name} {
     color: $value;
   }
+}
+
+.Text.title {
+  font-size: 36px;
+  color: $color-white;
+  font-weight: bold;
+}
+
+.Text.upper {
+  text-transform: uppercase;
 }

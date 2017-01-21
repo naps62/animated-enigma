@@ -22,7 +22,7 @@ class AnswerGatherer extends React.Component {
       <form onSubmit={this.handleSubmit} className="AnswerGatherer-form">
         <div className="u-pushDownLarge" />
 
-        <div className="AnswerGatherer-question">{this.props.current_question}</div>
+        <h1 className="Text title upper">{this.props.current_question}</h1>
         <div className="u-pushDownLarge" />
 
         <input

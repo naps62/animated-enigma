@@ -2,6 +2,7 @@ import React from "react";
 import Client from "../client";
 import Lobby from "./lobby";
 import AnswerGatherer from "./answer_gatherer";
+import ChairmanWaiting from "./chairman_waiting";
 import _ from "lodash";
 
 class Game extends React.Component {
@@ -31,7 +32,7 @@ class Game extends React.Component {
 
   renderAnswerGatherer() {
     if (this.state.chairman) {
-      return <div>Wait!</div>;
+      return <ChairmanWaiting {...this.state} />;
     } else {
       return <AnswerGatherer {...this.state} client={this.client} />;
     }
