@@ -3,7 +3,7 @@ defmodule AnimatedEnigma.QuestionProvider do
   use GenServer
 
   @questions [
-    "What is the meaning of life?",
+    "Qual é o sentido da vida?",
     "Quais?"
   ]
 
