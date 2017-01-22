@@ -18,11 +18,11 @@ class Waiting extends React.Component {
   }
 
   renderConsuela() {
-    if (!this.state.joke) {
-      return;
-    }
+    // if (!this.state.joke) {
+    //   return;
+    // }
 
-  return <img className="Waiting-consuela" src="/images/consuela.svg" />;
+    // return <img className="Waiting-consuela" src="/images/consuela.svg" />;
   }
 
   render() {

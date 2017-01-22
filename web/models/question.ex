@@ -23,4 +23,11 @@ defmodule AnimatedEnigma.Question do
   def correct_answer?(question, answer) do
     question.correct_answer == answer
   end
+
+  def fake_answer_author_id(question, answer) do
+    question.fake_answers
+    |> Enum.to_list
+    |> Enum.find(fn({id, current_answer}) -> current_answer == answer end)
+    |> elem(0)
+  end
 end

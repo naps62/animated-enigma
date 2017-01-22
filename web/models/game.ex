@@ -71,6 +71,7 @@ defmodule AnimatedEnigma.Game do
     else
       game
       |> with_wrong_answer(answer)
+      |> increment_other_score(answer)
     end
   end
 
@@ -95,6 +96,20 @@ defmodule AnimatedEnigma.Game do
   end
 
   defp increment_chairman_score(%{players: players} = game, player_id) do
+    updated_players = Enum.map(players, fn(current_player) ->
+      if current_player.id == player_id do
+        current_player |> Player.increment_score
+      else
+        current_player
+      end
+    end)
+
+    %__MODULE__{game | players: updated_players}
+  end
+
+  defp increment_other_score(%{players: players, question: question} = game, answer) do
+    player_id = Question.fake_answer_author_id(question, answer)
+
     updated_players = Enum.map(players, fn(current_player) ->
       if current_player.id == player_id do
         current_player |> Player.increment_score

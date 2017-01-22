@@ -35,7 +35,7 @@ defmodule AnimatedEnigma.QuestionProvider do
     Question.new("Qual é a peculiaridade da patente das mundialmente usadas bocas de incêndio?", "A única cópia ardeu num incêndio"),
     Question.new("Qual era o tema dos mais de 80,000 botões de lapela foram recolhidos devido a conterem tinta tóxica e perigo em 1974?", "Sensibilização para a segurança"),
     Question.new("Quem foi o actor que entrou num concurso de personificação dele próprio e nem sequer chegou à fase final?", "Charlie Chaplin"),
-    Question.new("Em 2007 um casal ficou conhecido devido a ter-se divorciado após descobrirem que a amante da Internet do marido era?", "A sua própria esposa"),
+    Question.new("Em 2007 um casal ficou conhecido devido a ter-se divorciado após descobrirem que a amante online do marido era?", "A sua própria esposa"),
     Question.new("Qual é a peculiaridade do Santo Patrick, o padroeiro da Irlanda?", "Não é Irlandês"),
     Question.new("O que estava Ronaldinho Gaúcho a fazer quando a Coca-Cola decidiu terminar o seu contrato publicitário?", "A beber uma Pepsi"),
     Question.new("Existem várias coisas banidas na China, qual é a mais irónica de todas?", "A palavra censura"),

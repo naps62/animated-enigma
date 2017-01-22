@@ -3,6 +3,7 @@ import _ from "lodash";
 
 import Presenter from "../presenter";
 import Fooling from "./fooling";
+import Waiting from "./waiting";
 
 class AnswerGatherer extends React.Component {
   constructor(props) {
@@ -66,28 +67,28 @@ class AnswerGatherer extends React.Component {
   }
 
   renderSubmit() {
-    if (this.isSubmitted()) {
-      return <div className="Text">OK. Now hold one</div>;
-    } else {
-      return <button className="Button Button--other">Submit</button>;
-    }
+    return <button className="Button Button--other">Submit</button>;
   }
 
   render() {
-    return <div className="AnswerGatherer">
-      <Fooling {...this.props} />
-      <form onSubmit={this.handleSubmit} className="AnswerGatherer-form">
-        <div className="u-pushDownLarge" />
+    if (this.isSubmitted()) {
+      return <Waiting {...this.props} />;
+    } else {
+      return <div className="AnswerGatherer">
+        <Fooling {...this.props} />
+        <form onSubmit={this.handleSubmit} className="AnswerGatherer-form">
+          <div className="u-pushDownLarge" />
 
-        <h1 className="Text title upper">{this.props.question.question}</h1>
-        <div className="u-pushDownLarge" />
+          <h1 className="Text title upper">{this.props.question.question}</h1>
+          <div className="u-pushDownLarge" />
 
-        {this.renderInput()}
-        {this.renderError()}
-        <div className="u-pushDownLarge" />
-        {this.renderSubmit()}
-      </form>
-    </div>
+          {this.renderInput()}
+          {this.renderError()}
+          <div className="u-pushDownLarge" />
+          {this.renderSubmit()}
+        </form>
+      </div>
+    }
   }
 }
 
