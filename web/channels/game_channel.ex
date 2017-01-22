@@ -67,7 +67,6 @@ defmodule AnimatedEnigma.GameChannel do
   end
 
   def handle_in("start", %{"game_id" => game_id}, socket) do
-<<<<<<< bf4e2530b7d265e235b8538b21523fa73793757f
     case GameManager.start(game_id) do
       {:ok, game} ->
         send self(), {:game_start, Enum.random(@intros)}
@@ -75,18 +74,7 @@ defmodule AnimatedEnigma.GameChannel do
 
       _ -> nil
     end
-||||||| merged common ancestors
-    case GameManager.start(game_id) do
-      {:ok, game} ->
-        send self(), {:update_game_state, game}
-
-      _ -> nil
-    end
-=======
-    GameManager.start(game_id)
-    |> handle_game_update(socket)
   end
->>>>>>> Main flow mostly done
 
   def handle_in("next_question", %{"game_id" => game_id}, socket) do
     GameManager.next_question(game_id)

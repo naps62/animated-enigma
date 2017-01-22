@@ -35,7 +35,7 @@ class App {
   }
 
   init () {
-    Presenter.init({ silentMode: false });
+    Presenter.init({ silentMode: true });
   }
 
   run () {
