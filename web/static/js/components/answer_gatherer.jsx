@@ -1,6 +1,7 @@
 import React from "react";
 import _ from "lodash";
 
+import Presenter from "../presenter";
 import Fooling from "./fooling";
 
 class AnswerGatherer extends React.Component {
@@ -16,9 +17,16 @@ class AnswerGatherer extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    this.props.client.addFakeAnswer(this.state.answer);
+    if (this.state.answer === this.props.question.correct_answer) {
+      const message = "Parabéns, escreveste a resposta correcta. Mas o objectivo não é esse, portanto esforça-te mais."
 
-    this.setState({ submitted: true })
+      Presenter.speak(message);
+      this.setState({ error: message });
+    } else {
+      this.props.client.addFakeAnswer(this.state.answer);
+
+      this.setState({ submitted: true })
+    }
   }
 
   isSubmitted() {
@@ -39,6 +47,15 @@ class AnswerGatherer extends React.Component {
     />;
   }
 
+  renderError() {
+    if (!this.state.error) return null;
+
+    return <div>
+      <div className="Text">{this.state.error}</div>
+      <div className="u-pushDownLarge" />
+    </div>;
+  }
+
   renderSubmit() {
     if (this.isSubmitted()) {
       return <div className="Text">OK. Now hold one</div>;
@@ -57,6 +74,7 @@ class AnswerGatherer extends React.Component {
         <div className="u-pushDownLarge" />
 
         {this.renderInput()}
+        {this.renderError()}
         <div className="u-pushDownLarge" />
         {this.renderSubmit()}
       </form>
