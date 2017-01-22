@@ -1,5 +1,5 @@
 defmodule AnimatedEnigma.Game do
-  defstruct id: nil, players: [], chairman: nil, state: :lobby, question: nil, result: nil
+  defstruct id: nil, players: [], chairman: nil, state: :lobby, question: nil, result: nil, answer: nil
 
   alias AnimatedEnigma.Question
 
@@ -49,17 +49,17 @@ defmodule AnimatedEnigma.Game do
 
   def answer_question(game = %__MODULE__{question: question}, player, answer) do
     if Question.correct_answer?(question, answer) do
-      with_correct_answer(game, player)
+      with_correct_answer(game, answer)
     else
       with_wrong_answer(game, answer)
     end
   end
 
-  def with_correct_answer(game, _player) do
-    %__MODULE__{game | state: :question_result, result: :correct}
+  def with_correct_answer(game, answer) do
+    %__MODULE__{game | state: :question_result, result: :correct, answer: answer}
   end
 
-  def with_wrong_answer(game, _player) do
-    %__MODULE__{game | state: :question_result, result: :wrong}
+  def with_wrong_answer(game, answer) do
+    %__MODULE__{game | state: :question_result, result: :wrong, answer: answer}
   end
 end

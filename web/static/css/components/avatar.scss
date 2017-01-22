@@ -1,0 +1,30 @@
+.Avatar {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.Avatar.small {
+  width: 50px;
+  height: 50px;
+}
+
+.Avatar.large {
+  width: 130px;
+  height: 130px;
+}
+
+.Avatar.player0 {
+  background-image: url("/images/avatars/bear@2x.png");
+}
+
+.Avatar.player1 {
+  background-image: url("/images/avatars/dog@2x.png");
+}
+
+.Avatar.player2 {
+  background-image: url("/images/avatars/mouse@2x.png");
+}
+
+.Avatar.player3 {
+  background-image: url("/images/avatars/cat@2x.png");
+}

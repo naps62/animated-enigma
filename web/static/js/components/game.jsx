@@ -60,7 +60,7 @@ class Game extends React.Component {
 
   renderCurrentRoom() {
     switch(this.state.state) {
-      case "lobby": return <Lobby {...this.state} onStart={this.onLobbyStart} />;
+      case "lobby": return <Lobby {...this.state} roomSize={this.props.roomSize} onStart={this.onLobbyStart} />;
       case "gather_answers": return this.renderAnswerGatherer();
       case "asking_question": return this.renderAskQuestion();
       case "question_result": return this.renderQuestionResult();

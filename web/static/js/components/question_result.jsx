@@ -6,11 +6,40 @@ class QuestionResult extends React.Component {
     return this.props.question.all_answers;
   }
 
-  classesForButton = (answer) => {
+  playerIndex(answer) {
     const playerID = _.findKey(this.props.question.fake_answers, a => a == answer)
-    const playerIndex = _.findIndex(this.props.players, { id: playerID });
 
-    return `Button player${playerIndex} u-pushDownBase`
+    return _.findIndex(this.props.players, { id: playerID });
+  }
+
+  classesForButton = (answer) => {
+    return `Button withInnerContent player${this.playerIndex(answer)} u-pushDownBase`;
+  }
+
+  renderLeftContent(answer) {
+    const index = this.playerIndex(answer);
+
+    if (index == -1) {
+      return;
+    }
+
+    const classes = `Avatar small player${index}`;
+
+    return <div className="Button-leftContent">
+      <div className={classes} />
+    </div>;
+  }
+
+  renderRightContent(answer) {
+    if (this.props.answer != answer) {
+      return;
+    }
+
+    const classes = `Avatar small player0`;
+
+    return <div className="Button-rightContent">
+      <div className={classes} />
+    </div>;
   }
 
   renderAnswer = (answer, index) => {
@@ -19,6 +48,8 @@ class QuestionResult extends React.Component {
       className={this.classesForButton(answer)}
     >
       {answer}
+      {this.renderLeftContent(answer)}
+      {this.renderRightContent(answer)}
     </button>
   }
 

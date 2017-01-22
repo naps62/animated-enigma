@@ -40,3 +40,21 @@
 .Button.player3 {
   background-color: $color-green;
 }
+
+.Button.withInnerContent {
+  position: relative;
+}
+
+.Button-leftContent {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+}
+
+.Button-rightContent {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+}

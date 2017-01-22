@@ -9,23 +9,16 @@
 
 @import "utilities/reset";
 
-@import "components/game";
-@import "components/lobby";
 @import "components/button";
 @import "components/input";
 @import "components/text";
 
+@import "components/game";
+@import "components/lobby";
 @import "components/answer_gatherer";
 @import "components/ask_question";
 @import "components/question_result";
 @import "components/waiting";
-@import "components/waiting";
-// @import "components/grid";
-// @import "components/layout";
-// @import "components/flex";
-// @import "components/panel";
-// @import "components/panel_header";
-// @import "components/menu";
-// @import "components/label";
-// @import "components/button";
-// @import "components/link";
+@import "components/fooling";
+@import "components/avatar";
+@import "components/theme";

@@ -2,11 +2,14 @@ import React from "react";
 import _ from "lodash";
 
 class Lobby extends React.Component {
-  renderPlayer = (player) => {
+  renderPlayer = (player, index) => {
+    const avatarClasses = `Avatar large player${index}`;
+
     return <li className="Lobby-player" key={player.name}>
       <div className="Lobby-playerName">
         {player.name}
       </div>
+      <div className={avatarClasses} />
     </li>;
   }
 
@@ -21,7 +24,7 @@ class Lobby extends React.Component {
   }
 
   renderStartButton() {
-    if (_.size(this.props.players) != 4) {
+    if (_.size(this.props.players) != this.props.roomSize) {
       return;
     }
 

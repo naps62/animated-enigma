@@ -1,4 +1,6 @@
 defmodule AnimatedEnigma.Question do
+  import AnimatedEnigma.Config
+
   defstruct question: nil, correct_answer: nil, fake_answers: %{}, all_answers: []
 
   def new(question, correct_answer) do
@@ -14,7 +16,8 @@ defmodule AnimatedEnigma.Question do
   end
 
   def ready?(question) do
-    Enum.count(question.fake_answers) == 3
+    IO.inspect room_size()
+    Enum.count(question.fake_answers) == room_size() - 1
   end
 
   def correct_answer?(question, answer) do

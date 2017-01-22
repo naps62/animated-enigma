@@ -1,6 +1,8 @@
 import React from "react";
 import _ from "lodash";
 
+import Fooling from "./fooling";
+
 class AnswerGatherer extends React.Component {
   constructor(props) {
     super(props);
@@ -47,6 +49,7 @@ class AnswerGatherer extends React.Component {
 
   render() {
     return <div className="AnswerGatherer">
+      <Fooling {...this.props} />
       <form onSubmit={this.handleSubmit} className="AnswerGatherer-form">
         <div className="u-pushDownLarge" />
 

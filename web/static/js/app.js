@@ -44,8 +44,9 @@ class App {
     if (container) {
       const gameId = container.dataset.gameId;
       const playerId = container.dataset.playerId;
+      const roomSize = container.dataset.roomSize;
 
-      ReactDOM.render(<Game id={gameId} playerId={playerId} />, container);
+      ReactDOM.render(<Game id={gameId} playerId={playerId} roomSize={roomSize} />, container);
     }
   }
 }
