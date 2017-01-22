@@ -17,6 +17,14 @@ class Waiting extends React.Component {
     Presenter.speak(joke);
   }
 
+  renderConsuela() {
+    if (!this.state.joke) {
+      return;
+    }
+
+  return <img className="Waiting-consuela" src="/images/consuela.svg" />;
+  }
+
   render() {
     return <div className="Waiting">
       <div className="u-padDownLarge" />
@@ -32,6 +40,8 @@ class Waiting extends React.Component {
       <div className="u-pushDownLarge" />
 
       <button className="Button" onClick={this.handleChangeJoke}>Estou aborrecido</button>
+
+      {this.renderConsuela()}
     </div>
   }
 }
