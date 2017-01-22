@@ -39,6 +39,18 @@ class Client {
     this.channel.push("answer_question", { game_id: this.gameId, player_id: this.playerId, answer: answer });
   }
 
+  goToQuestionResult() {
+    this.channel.push("go_to_question_result", { game_id: this.gameId });
+  }
+
+  goToScoreboard() {
+    this.channel.push("go_to_scoreboard", { game_id: this.gameId });
+  }
+
+  goToNextQuestion() {
+    this.channel.push("next_question", { game_id: this.gameId });
+  }
+
   _onJoin(initialState) {
     this._setState(initialState);
   }

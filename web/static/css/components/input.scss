@@ -12,6 +12,6 @@
   padding: $space-small;
 
   @include placeholder {
-    color: $color-white;
+    color: rgba($color-white, 0.6);
   }
 }

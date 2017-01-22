@@ -1,22 +1,31 @@
-.QuestionResult {
+.Authors {
   background-color: var(--chairman-color);
   height: 100vh;
 }
 
-.QuestionResult-content {
+.Authors-content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.QuestionResult-innerContent {
+.Authors-answers {
+  padding: $space-base;
+
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.QuestionResult-text {
+.Authors-question {
   font-size: 36px;
   color: $color-white;
   font-weight: bold;
+  text-transform: uppercase;
+}
+
+.Authors-answer {
+  font-size: 36px;
+  color: $color-white;
 }

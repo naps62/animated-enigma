@@ -67,6 +67,7 @@ defmodule AnimatedEnigma.GameChannel do
   end
 
   def handle_in("start", %{"game_id" => game_id}, socket) do
+<<<<<<< bf4e2530b7d265e235b8538b21523fa73793757f
     case GameManager.start(game_id) do
       {:ok, game} ->
         send self(), {:game_start, Enum.random(@intros)}
@@ -74,32 +75,53 @@ defmodule AnimatedEnigma.GameChannel do
 
       _ -> nil
     end
+||||||| merged common ancestors
+    case GameManager.start(game_id) do
+      {:ok, game} ->
+        send self(), {:update_game_state, game}
 
-    {:noreply, socket}
+      _ -> nil
+    end
+=======
+    GameManager.start(game_id)
+    |> handle_game_update(socket)
+  end
+>>>>>>> Main flow mostly done
+
+  def handle_in("next_question", %{"game_id" => game_id}, socket) do
+    GameManager.next_question(game_id)
+    |> handle_game_update(socket)
   end
 
   def handle_in("fake_answer", %{"game_id" => game_id, "player_id" => player_id, "answer" => answer }, socket) do
-    case GameManager.add_fake_answer(game_id, player_id, answer) do
-      {:ok, game} ->
-        IO.inspect game
-        send self(), {:update_game_state, game}
-
-      _ -> nil
-    end
-
-    {:noreply, socket}
+    GameManager.add_fake_answer(game_id, player_id, answer)
+    |> handle_game_update(socket)
   end
 
   def handle_in("answer_question", %{"game_id" => game_id, "player_id" => player_id, "answer" => answer }, socket) do
-    case GameManager.answer_question(game_id, player_id, answer) do
-      {:ok, game} ->
-        send self(), {:update_game_state, game}
+    GameManager.answer_question(game_id, player_id, answer)
+    |> handle_game_update(socket)
+  end
 
-      _ -> nil
-    end
+  def handle_in("go_to_question_result", %{"game_id" => game_id}, socket) do
+    GameManager.go_to_question_result(game_id)
+    |> handle_game_update(socket)
+  end
 
+  def handle_in("go_to_scoreboard", %{"game_id" => game_id}, socket) do
+    GameManager.go_to_scoreboard(game_id)
+    |> handle_game_update(socket)
+  end
+
+  defp handle_game_update({:ok, game}, socket) do
+    send self(), {:update_game_state, game}
     {:noreply, socket}
   end
+
+  defp handle_game_update(_, socket) do
+    {:noreply, socket}
+  end
+
 
   def handle_info({:update_game_state, game}, socket) do
     IO.inspect game

@@ -7,8 +7,10 @@ import Lobby from "./lobby";
 import AnswerGatherer from "./answer_gatherer";
 import AskQuestion from "./ask_question";
 import Waiting from "./waiting";
+import Authors from "./authors";
 import QuestionResult from "./question_result";
 import MuteButton from "./mute_button";
+import Scoreboard from "./scoreboard";
 
 class Game extends React.Component {
   constructor(props) {
@@ -27,6 +29,7 @@ class Game extends React.Component {
   decoratedState = (state) => {
     state.isChairman = (state.chairman && state.chairman.id == this.props.playerId);
     state.index = _.findIndex(state.players, { id: this.props.playerId });
+    state.playerId = this.props.playerId;
 
     return state;
   }
@@ -51,8 +54,16 @@ class Game extends React.Component {
     }
   }
 
+  renderAuthors() {
+    return <Authors {...this.state} client={this.client} />;
+  }
+
   renderQuestionResult() {
     return <QuestionResult {...this.state} client={this.client} />;
+  }
+
+  renderScoreboard() {
+    return <Scoreboard {...this.state} client={this.client} />;
   }
 
   renderCurrentRoom() {
@@ -60,7 +71,9 @@ class Game extends React.Component {
       case "lobby": return <Lobby {...this.state} roomSize={this.props.roomSize} onStart={this.onLobbyStart} />;
       case "gather_answers": return this.renderAnswerGatherer();
       case "asking_question": return this.renderAskQuestion();
+      case "authors": return this.renderAuthors();
       case "question_result": return this.renderQuestionResult();
+      case "scoreboard": return this.renderScoreboard();
       default: return <div>error. state is {this.state.state}.</div>;
     }
   }

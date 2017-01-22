@@ -1,9 +1,13 @@
-= form_tag game_path(@conn, :show), method: :get
-  div
-    = label :game, :public_id, "Game ID"
-    = text_input :game, :public_id
-  div
-    = label :game, :username, "Your username"
-    = text_input :game, :username
+.Game.home
+  .RoomForm
+    = form_tag game_path(@conn, :show), method: :get, class: "RoomForm-content"
+      h1.RoomForm-title Má Onda
+      .u-pushDownLarge
+      = text_input :game, :public_id, class: "Input", placeholder: "Type the room ID"
+      .u-pushDownBase
 
-  = submit "Enter"
+      = text_input :game, :username, class: "Input", placeholder: "Type your name"
+
+      .u-pushDownBase
+
+      = submit "Enter", class: "Button"

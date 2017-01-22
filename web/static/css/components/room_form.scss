@@ -1,0 +1,25 @@
+.RoomForm {
+  background-color: var(--my-color);
+  height: 100vh;
+}
+
+.RoomForm-content {
+  padding: $space-base;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.RoomForm-title {
+  font-size: 36px;
+  color: $color-white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.RoomForm-answer {
+  font-size: 36px;
+  color: $color-white;
+}
