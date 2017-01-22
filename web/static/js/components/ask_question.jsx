@@ -21,7 +21,7 @@ class AskQuestion extends React.Component {
   renderAnswer = (answer, index) => {
     return <button
       key={index}
-      className="Button u-pushDownBase"
+      className="Button small u-pushDownBase"
       onClick={this.handleChoice}
     >
       {answer}

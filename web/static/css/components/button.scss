@@ -2,7 +2,7 @@
   color: $color-black;
   background-color: $color-white;
   width: 100%;
-  height: 60px;
+  line-height: 60px;
 
   font-size: 36px;
   font-weight: bold;
@@ -16,6 +16,11 @@
 
 .Button--other {
   box-shadow: 7px 7px 0 var(--chairman-color);
+}
+
+.Button.small {
+  font-size: 24px;
+  line-height: 40px;
 }
 
 .Button.player0,
