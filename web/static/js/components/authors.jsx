@@ -27,7 +27,7 @@ class Authors extends React.Component {
   }
 
   classesForButton = (answer) => {
-    return `Button withInnerContent player${this.playerIndex(answer)} u-pushDownBase`;
+    return `Button small withInnerContent player${this.playerIndex(answer)} u-pushDownBase`;
   }
 
   renderLeftContent(answer) {
