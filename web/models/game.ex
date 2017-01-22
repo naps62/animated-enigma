@@ -1,7 +1,23 @@
 defmodule AnimatedEnigma.Game do
-  defstruct id: nil, players: [], chairman: nil, state: :lobby, question: nil, result: nil, answer: nil
+  defstruct id: nil, players: [], chairman: nil, state: :lobby, question: nil, result: nil, answer: nil, voice_text: nil
 
   alias AnimatedEnigma.{Question, Player, Intro}
+
+  @correct_voice_texts [
+    "Impecável, mesmo em cheio!",
+    "Eu sei que vocês tinham que inserir as respostas erradas, mas não era preciso serem tão erradas!",
+    "Se falhar fosse o teu trabalho, estavas desempregado!",
+    "Mais um ponto para o menino da cadeira"
+  ]
+
+  @failure_voice_texts [
+    "E acertou mesmo em cheio . . .na resposta submetida pelo #PLAYER",
+    "Informo a todos os presentes que a resposta poderia estar certa, não tivesse sido o #PLAYER a submetê-la.",
+    "Há coisas na vida que são certas, e acredito plenamente que o #PLAYER tem a certeza que esta era a resposta dele.",
+    "Se um dia eu virar no caminho errado, vou-me lembrar desta resposta escolhida pelo #CHAIRMAN .",
+    "Penso que quando viu a pergunta o #CHAIRMAN já sabia como isto ia acabar.",
+    "Não sei se ficou claro nas regras, mas #CHAIRMAN o objetivo era escolher a resposta certa."
+  ]
 
   def new(game_id) do
     %__MODULE__{id: game_id}
@@ -59,11 +75,23 @@ defmodule AnimatedEnigma.Game do
   end
 
   defp with_correct_answer(game, answer) do
-    %__MODULE__{game | state: :authors, result: :correct, answer: answer}
+    %__MODULE__{
+      game |
+      state: :authors,
+      result: :correct,
+      answer: answer,
+      voice_text: Enum.random(@correct_voice_texts)
+    }
   end
 
   defp with_wrong_answer(game, answer) do
-    %__MODULE__{game | state: :authors, result: :wrong, answer: answer}
+    %__MODULE__{
+      game |
+      state: :authors,
+      result: :wrong,
+      answer: answer,
+      voice_text: Enum.random(@failure_voice_texts)
+    }
   end
 
   defp increment_chairman_score(%{players: players} = game, player_id) do

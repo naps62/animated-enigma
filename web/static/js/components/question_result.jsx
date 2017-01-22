@@ -1,9 +1,19 @@
 import React from "react";
 import _ from "lodash";
 
+import Presenter from "../presenter";
+
 class QuestionResult extends React.Component {
   get answers() {
     return this.props.question.all_answers;
+  }
+
+  get voiceText() {
+    const playerId = _.findKey(this.props.question.fake_answers, a => this.props.answer);
+    const interpolatedChairman = _.replace(this.props.voice_text, /#CHAIRMAN/, this.props.chairman.id);
+    const interpolatedPlayer = _.replace(interpolatedChairman, /#PLAYER/, playerId);
+
+    return interpolatedPlayer;
   }
 
   skip = () => {
@@ -15,6 +25,8 @@ class QuestionResult extends React.Component {
   }
 
   componentDidMount() {
+    Presenter.speak(this.voiceText);
+
     // if we're the chairman, trigger the move to scoreboard
     window.setTimeout(this.skip, 5000);
   }

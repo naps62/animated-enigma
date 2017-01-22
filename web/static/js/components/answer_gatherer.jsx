@@ -30,8 +30,8 @@ class AnswerGatherer extends React.Component {
   }
 
   isCorrectAnswer() {
-    const normalizedSubmitted = _.lowerCase(_.replace(this.state.answer, /\s/g, ""));
-    const normalizedCorrect = _.lowerCase(_.replace(this.props.question.correct_answer, /\s/g, ""));
+    const normalizedSubmitted = _.lowerCase(_.replace(this.state.answer, /\s+/g, ""));
+    const normalizedCorrect = _.lowerCase(_.replace(this.props.question.correct_answer, /\s+/g, ""));
     console.log("> Normalized submitted:", normalizedSubmitted);
     console.log("> Normalized correct:", normalizedCorrect);
 
