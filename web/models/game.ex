@@ -1,7 +1,7 @@
 defmodule AnimatedEnigma.Game do
   defstruct id: nil, players: [], chairman: nil, state: :lobby, question: nil, result: nil, answer: nil
 
-  alias AnimatedEnigma.{Question, Player}
+  alias AnimatedEnigma.{Question, Player, Intro}
 
   def new(game_id) do
     %__MODULE__{id: game_id}
