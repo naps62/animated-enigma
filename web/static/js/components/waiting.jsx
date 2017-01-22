@@ -5,22 +5,33 @@ import Presenter from "../presenter";
 import Jokes from "../jokes";
 
 class Waiting extends React.Component {
-  componentDidMount() {
-    Presenter.speak("Ay madre! Os mios amigos chamaram-me homossexual!");
-    Presenter.speak("Bate lles!");
-    Presenter.speak("Mas eles son tan fofos.");
+  constructor(props) {
+    super(props);
+    this.state = { joke: "" };
+  }
+
+  handleChangeJoke = () => {
+    const joke = _.sample(Jokes);
+
+    this.setState({ joke: joke });
+    Presenter.speak(joke);
   }
 
   render() {
     return <div className="Waiting">
       <div className="u-padDownLarge" />
-
       <h1 className="Text title">
-        <div>- Ó māe, ó māe! Os meus amigos chamaram-me homossexual!</div>
-        <div>- Bate-lhes</div>
-        <div>- Mas eles sao tao fofos.</div>
+        Aguardando...
       </h1>
+      <div className="u-pushDownBase" />
+
+      <div className="Waiting-joke">
+        {this.state.joke}
+      </div>
+
       <div className="u-pushDownLarge" />
+
+      <button className="Button" onClick={this.handleChangeJoke}>Estou aborrecido</button>
     </div>
   }
 }
