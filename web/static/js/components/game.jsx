@@ -8,6 +8,7 @@ import AnswerGatherer from "./answer_gatherer";
 import AskQuestion from "./ask_question";
 import Waiting from "./waiting";
 import QuestionResult from "./question_result";
+import MuteButton from "./mute_button";
 
 class Game extends React.Component {
   constructor(props) {
@@ -69,6 +70,7 @@ class Game extends React.Component {
 
     return <div className={classes}>
       {this.renderCurrentRoom()}
+      <MuteButton />
     </div>
   }
 }

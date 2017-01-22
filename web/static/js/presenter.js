@@ -11,12 +11,21 @@ export const init = ({ silentMode }) => {
   ResponsiveVoice.setDefaultVoice("Spanish Female");
 }
 
+export const isMuted = () => {
+  return config.silentMode === true;
+}
+
 export const speak = (message) => {
   console.log(message);
 
   if (config.silentMode) return;
 
   ResponsiveVoice.speak(message);
+};
+
+export const toggleMute = () => {
+  ResponsiveVoice.cancel();
+  config.silentMode = !config.silentMode;
 };
 
 export const userJoined = (playerId) => {
@@ -29,7 +38,9 @@ export const welcome = (playerId) => {
 
 export default {
   init,
+  isMuted,
   speak,
+  toggleMute,
   userJoined,
   welcome
 };
