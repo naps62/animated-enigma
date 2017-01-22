@@ -12,7 +12,7 @@ class Scoreboard extends React.Component {
 
   componentDidMount() {
     // if we're the chairman, trigger the move to scoreboard
-    // window.setTimeout(this.skip, 5000);
+    window.setTimeout(this.skip, 5000);
   }
 
   renderScore(player, index) {
