@@ -13,7 +13,7 @@
 
   <body>
     <%= render @view_module, @view_template, assigns %>
-    <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
