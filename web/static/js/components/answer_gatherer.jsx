@@ -17,7 +17,7 @@ class AnswerGatherer extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    if (this.state.answer === this.props.question.correct_answer) {
+    if (this.isCorrectAnswer()) {
       const message = "Parabéns, escreveste a resposta correcta. Mas o objectivo não é esse, portanto esforça-te mais."
 
       Presenter.speak(message);
@@ -27,6 +27,15 @@ class AnswerGatherer extends React.Component {
 
       this.setState({ submitted: true })
     }
+  }
+
+  isCorrectAnswer() {
+    const normalizedSubmitted = _.lowerCase(_.replace(this.state.answer, /\s/g, ""));
+    const normalizedCorrect = _.lowerCase(_.replace(this.props.question.correct_answer, /\s/g, ""));
+    console.log("> Normalized submitted:", normalizedSubmitted);
+    console.log("> Normalized correct:", normalizedCorrect);
+
+    return normalizedSubmitted === normalizedCorrect;
   }
 
   isSubmitted() {
