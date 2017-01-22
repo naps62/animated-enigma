@@ -23,10 +23,6 @@ class Game extends React.Component {
     this.client.join(this.props.id, this.props.playerId);
   }
 
-  componentDidMount() {
-    Presenter.intro();
-  }
-
   decoratedState = (state) => {
     state.isChairman = (state.chairman && state.chairman.id == this.props.playerId);
     state.index = _.findIndex(state.players, { id: this.props.playerId });

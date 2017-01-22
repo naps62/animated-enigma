@@ -39,6 +39,14 @@ class Client {
     this.channel.push("answer_question", { game_id: this.gameId, player_id: this.playerId, answer: answer });
   }
 
+  _onJoin(initialState) {
+    this._setState(initialState);
+  }
+
+  _onJoinError(error) {
+    console.error(error);
+  }
+
   _onPlayerJoined = ({ player_id: playerId }) => {
     if (this.playerId === playerId) {
       Presenter.welcome(playerId);
@@ -47,12 +55,8 @@ class Client {
     }
   }
 
-  _onJoin(initialState) {
-    this._setState(initialState);
-  }
-
-  _onJoinError(error) {
-    console.error(error);
+  _onGameStart = ({ intro }) => {
+    Presenter.speak(intro);
   }
 
   _setState = (state) => {
@@ -64,6 +68,7 @@ class Client {
 
   _setupEvents() {
     this.channel.on("game_update", this._setState);
+    this.channel.on("game_start", this._onGameStart);
     this.channel.on("player_joined", this._onPlayerJoined);
   }
 }
