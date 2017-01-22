@@ -11,12 +11,13 @@ class Authors extends React.Component {
       return;
     }
 
+    window.clearTimeout(this.state.timeout);
     this.props.client.goToQuestionResult();
   }
 
   componentDidMount() {
     // if we're the chairman, trigger the move to scoreboard
-    window.setTimeout(this.skip, 5000);
+    this.setState({ timeout: window.setTimeout(this.skip, 5000) });
   }
 
   playerIndex(answer) {

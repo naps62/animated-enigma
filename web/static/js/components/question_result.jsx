@@ -21,6 +21,7 @@ class QuestionResult extends React.Component {
       return;
     }
 
+    window.clearTimeout(this.state.timeout);
     this.props.client.goToScoreboard();
   }
 
@@ -28,7 +29,7 @@ class QuestionResult extends React.Component {
     Presenter.speak(this.voiceText);
 
     // if we're the chairman, trigger the move to scoreboard
-    window.setTimeout(this.skip, 5000);
+    this.setState({ timeout: window.setTimeout(this.skip, 5000) });
   }
 
   get rightText() {
