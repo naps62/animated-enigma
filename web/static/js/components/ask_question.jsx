@@ -1,7 +1,14 @@
 import React from "react";
 import _ from "lodash";
 
+import Presenter from "../presenter";
+
 class AskQuestion extends React.Component {
+  componentDidMount () {
+    Presenter.speak(this.props.question.question);
+    _.each(this.answers, Presenter.speak);
+  }
+
   get answers() {
     return this.props.question.all_answers;
   }
